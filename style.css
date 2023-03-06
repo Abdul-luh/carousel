@@ -46,6 +46,7 @@
 	border-radius: 0.25rem;
 	padding: 0.5rem;
 	background-color: rgba(0, 0, 0, 0.1);
+	display: none;
 }
 .carousel-btn:hover,
 .carousel-btn:focus {
@@ -62,4 +63,10 @@
 }
 .next {
 	right: 1rem;
+}
+
+@media screen and (min-width: 60rem) {
+	.carousel-btn {
+		display: block;
+	}
 }
