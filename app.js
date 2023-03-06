@@ -1,5 +1,7 @@
 const buttons = document.querySelectorAll("[data-carousel-btn]");
-const nextBtn = document.querySelector('[data-carousel-btn="next"]');
+const nextBtn = document.querySelector('[data-carousel-button="next"]');
+const slideContainer = document.querySelector("[data-carousel] [data-slides]");
+let initialX = null;
 
 buttons.forEach((btn) => {
 	btn.addEventListener("click", () => {
@@ -20,3 +22,25 @@ buttons.forEach((btn) => {
 setInterval(() => {
 	nextBtn.click();
 }, 5000);
+
+slideContainer.addEventListener("touchstart", (e) => {
+	initialX = e.touches[0].clientX;
+});
+
+slideContainer.addEventListener("touchend", (e) => {
+	const finalX = e.changedTouches[0].clientX;
+	const deltaX = finalX - initialX;
+
+	let prevBtn, nextBtn;
+
+	prevBtn = document.querySelector('[data-carousel-button="prev"]');
+	nextBtn = document.querySelector('[data-carousel-button="next"]');
+
+	if (deltaX > 0) {
+		// console.log(prevBtn.click());
+		prevBtn.click();
+	} else if (deltaX < 0) {
+		// console.log(nextBtn.click);
+		nextBtn.click();
+	}
+});
